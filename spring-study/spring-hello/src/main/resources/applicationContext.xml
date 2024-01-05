@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--使用Spring来创建对象，在Spring中这些都叫bean
+    id = 变量名
+    class = new 的对象
+    property 相当于给对象的属性设置一个值
+-->
+<!--    <bean id="hello" class="com.kuang.pojo.Hello">-->
+<!--        <constructor-arg index="0" value="java"/>-->
+<!--    </bean>-->
+
+    <bean id="address" class="com.kuang.pojo.Address">
+        <property name="address" value="西安"/>
+    </bean>
+
+    <bean id="student" class="com.kuang.pojo.Student">
+        <property name="name" value="狂神"/>
+        <property name="address" ref="address"/>
+        <property name="books">
+            <array>
+                <value>三国演义</value>
+                <value>西游记</value>
+            </array>
+        </property>
+        <property name="hobbies">
+            <list>
+                <value>code</value>
+                <value>music</value>
+            </list>
+        </property>
+        <property name="card">
+            <map>
+                <entry key="身份证" value="123"/>
+                <entry key="银行卡" value="1234"/>
+            </map>
+        </property>
+        <property name="games">
+            <set>
+                <value>lol</value>
+                <value>bob</value>
+            </set>
+        </property>
+        <property name="wife">
+            <null/>
+        </property>
+        <property name="info">
+            <props>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+<!--    注册bean-->
+    <bean id="UserService" class="com.kuang.service.UserServiceImpl"/>
+    <bean id="AfterLog" class="com.kuang.log.AfterLog"/>
+    <bean id="BeforeLog" class="com.kuang.log.BeforeLog"/>
+<!--&lt;!&ndash;    方式一：使用Spring原生API&ndash;&gt;-->
+<!--    &lt;!&ndash;    配置aop&ndash;&gt;-->
+<!--    <aop:config>-->
+<!--&lt;!&ndash;        切入点&ndash;&gt;-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* com.kuang.service.UserServiceImpl.*(..))"/>-->
+
+<!--&lt;!&ndash;        增加执行环绕&ndash;&gt;-->
+<!--        <aop:advisor advice-ref="AfterLog" pointcut-ref="pointcut"/>-->
+<!--        <aop:advisor advice-ref="BeforeLog" pointcut-ref="pointcut"/>-->
+
+<!--    </aop:config>-->
+
+    <bean id="DiyAop" class="com.kuang.log.DiyAop"/>
+<!--方式二：自定义切面-->
+<!--    <aop:config>-->
+<!--        <aop:aspect id="diy" ref="DiyAop">-->
+<!--            <aop:pointcut id="pointcut" expression="execution(*           com.kuang.service.UserServiceImpl.*(..))"/>-->
+
+<!--            <aop:before method="before" pointcut-ref="pointcut"/>-->
+<!--            <aop:after method="after" pointcut-ref="pointcut"/>-->
+
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <aop:aspectj-autoproxy/>
+
+</beans>
